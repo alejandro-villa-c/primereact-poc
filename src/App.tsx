@@ -3,11 +3,17 @@ import './App.css';
 import { AppButton } from './components/Button';
 import { CreateQuestionDialog } from 'components/CreateQuestionDialog';
 import { useCallback, useState } from 'react';
+import { QuestionFeedbackDialog } from 'components/QuestionFeedbackDialog';
 
 const App = () => {
   const [isCreateQuestionDialogVisible, setIsCreateQuestionDialogVisible] = useState<boolean>(false);
   const onHideCreateQuestionDialog = useCallback(() => {
     setIsCreateQuestionDialogVisible(false);
+  }, []);
+
+  const [isQuestionFeedbackDialogVisible, setIsQuestionFeedbackDialogVisible] = useState<boolean>(false);
+  const onHideQuestionFeedbackDialog = useCallback(() => {
+    setIsQuestionFeedbackDialogVisible(false);
   }, []);
 
   return (
@@ -28,10 +34,11 @@ const App = () => {
             Learn more about PrimeReact
           </a>
         </div>
-        <AppButton label="Leave feedback" />
+        <AppButton label="Leave feedback" onClick={() => setIsQuestionFeedbackDialogVisible(true)} />
       </header>
 
       <CreateQuestionDialog isVisible={isCreateQuestionDialogVisible} onHide={onHideCreateQuestionDialog} />
+      <QuestionFeedbackDialog isVisible={isQuestionFeedbackDialogVisible} onHide={onHideQuestionFeedbackDialog} />
     </div>
   );
 }

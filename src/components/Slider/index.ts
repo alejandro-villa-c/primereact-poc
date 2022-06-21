@@ -1,0 +1,1 @@
+export { AppSlider } from './Slider';

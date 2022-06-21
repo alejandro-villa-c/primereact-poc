@@ -31,8 +31,9 @@ export const CreateQuestionDialog = (props: CreateQuestionDialogProps) => {
   const saveQuestion = useCallback(() => {
     if (toast && toast.current) {
       toast.current.show({ severity: 'success', summary: 'Success', detail: 'Question created successfully', life: 3000 });
+      props.onHide();
     }
-  }, [toast]);
+  }, [toast, props]);
 
   const footer = (<div className="align-items-end">
     <AppButton label="Cancel" className="p-button-rounded p-button-danger mr-3" onClick={props.onHide} />
