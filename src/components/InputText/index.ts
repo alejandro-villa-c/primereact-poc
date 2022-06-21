@@ -1,0 +1,1 @@
+export { AppInputText } from './InputText';

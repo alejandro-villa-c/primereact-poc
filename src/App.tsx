@@ -1,24 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
+import logo from './assets/images/primereact-logo.webp';
 import './App.css';
+import { AppButton } from './components/Button';
+import { CreateQuestionDialog } from 'components/CreateQuestionDialog';
+import { useCallback, useState } from 'react';
 
-function App() {
+const App = () => {
+  const [isCreateQuestionDialogVisible, setIsCreateQuestionDialogVisible] = useState<boolean>(false);
+  const onHideCreateQuestionDialog = useCallback(() => {
+    setIsCreateQuestionDialogVisible(false);
+  }, []);
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <AppButton label="Create question" onClick={() => setIsCreateQuestionDialogVisible(true)} />
+        <div className="mx-8">
+          <img src={logo} className="App-logo" alt="logo" />
+          <p>
+            PrimeReact proof of concept.
+          </p>
+          <a
+            className="App-link"
+            href="https://www.primefaces.org/primereact/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Learn more about PrimeReact
+          </a>
+        </div>
+        <AppButton label="Leave feedback" />
       </header>
+
+      <CreateQuestionDialog isVisible={isCreateQuestionDialogVisible} onHide={onHideCreateQuestionDialog} />
     </div>
   );
 }
